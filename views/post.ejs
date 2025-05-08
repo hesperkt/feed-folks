@@ -1,0 +1,64 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-6">
+      <h2><%= post.title %></h2>
+      <!-- <%= JSON.stringify(post._id) %>  used to test why post.id rather than post._id works -->
+      <img class="img-fluid" src="<%= post.image%>" />
+      <div class="row justify-content-between">
+        <form
+          class="col-1"
+          action="/post/likePost/<%= post.id %>?_method=PUT" 
+          method="POST" 
+        >
+          <button class="btn btn-primary fa fa-heart" type="submit"></button>
+        </form>
+        <h3 class="col-3">Likes: <%= post.likes %></h3>
+        <%if(post.user == user.id){ %>
+        <form
+          action="/post/deletePost/<%= post.id %>?_method=DELETE"
+          method="POST"
+          class="col-3"
+        >
+          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        </form>
+        <%}%>
+
+    <div class="mt-5">
+      <p><%= post.caption %></p>
+    </div>
+
+<!-- Made with Layoyo &B Blu on 5/7/2025 -->
+      <form
+        action="/comment/createComment/<%= post.id %>"
+        method="POST"
+        class="col-3"
+      >
+        <input type="text" name="comment" placeholder="Leave a comment."></input>
+        <button class="btn btn-primary fa fa-comment" type="submit"> Comment</button>
+      </form>
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<comments.length; i++) {%> 
+          <li class="col-6 justify-content-between mt-5">
+           <%= comments[i].text %>
+
+           <form action="/comment/likeComment/<%= comments[i].id %>?_method=PUT" method="POST"> <button class="btn btn-primary fa fa-like" type="submit"> <%= comments[i].likes %> Likes </button></form>
+
+          <%if(post.user == user.id || comments[i].postedBy == user.id){ %> 
+            <!-- person who made post == person logged in OR person who commented == person logged in -> you can delete the comment!!! yay ty Layoyo <3 -->
+           <form action="/comment/deleteComment/<%= comments[i].id %>?_method=PUT" method="POST"> <button class="btn btn-primary fa fa-trash" type="submit"> Delete</button></form> 
+          <% } %>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+    
+    <div class="col-6 mt-5">
+      <a class="btn btn-primary" href="/profile">Return to Profile</a>
+      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') -%>
