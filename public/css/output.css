@@ -397,22 +397,25 @@
 .active, .accordion:hover {
   background: rgb(68, 98, 60);
 }
+
 .panel {
   padding: 5%;
   display: none;
   overflow: hidden;
 }
+
 .accordion:after {
   color: black;
   float: right;
   content: "★";
 }
+
 .active:after {
   content: "★";
   color: rgb(244 240 234);
 }
 
-ul {
+.navigationBar {
   display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -421,6 +424,7 @@ ul {
 	height: 75px;
 	background: rgb(98 141 86);
 }
+
 main {
   display: flex;
   flex-wrap: wrap;
@@ -429,20 +433,78 @@ main {
 
 main section{
   width: 455px;
+  margin: 1.5%;
+}
+
+/* img {
+  height: 25%;
+  width: 25%;
+} */
+
+.basic {
+  font-size: 1.5rem;
+  padding: 2%;
+  margin: 2%;
+  background:rgb(98 141 86);
+  color:  rgb(255 255 255);
+}
+
+.userInfo {
+  margin-top: 3.5%;
+}
+
+.profilePosts li img {
+  border: 2px solid rgb(255 255 255);
   margin: 2%;
 }
 
-img {
-  height: 25%;
-  width: 25%;
-}
-
-.gallery{
+.gallery {
   margin: 5%;
 }
 
 .sign {
-  background: rgb(235 249 255);
+  background: rgb(255 255 255);
+}
+
+.loginForm {
+  color: black;
+  padding: 5%;
+  width: 100%;
+  background: rgb(255 255 255);
+}
+
+.loginForm h1 {
+  text-align: center;
+}
+
+.loginForm input {
+	width: 100%;
+	border: 2px solid rgb(58 133 37);
+	color: black;
+	position: relative;
+	padding: 3%;
+  margin: 3% 0%;
+}
+
+.submitPost {
+  margin-top: 5%;
+}
+
+.submitPost h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+.submitPost input , .submitPost textarea {
+  border: 2px solid rgb(255 255 255);
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.alert {
+  border: 2px solid rgb(205 152 255);
+  margin: 3%;
 }
 
 .sign p {
@@ -458,12 +520,30 @@ img {
   gap: 5%;
 }
 
-
-
-
 li a:hover{
 	color: black;
 }
+
+.profilePosts img {
+  height: 45%;
+  width: 45%;
+}
+
+.divide {
+  display: flex;
+}
+
+.half {
+  flex: 1;
+  margin: 1%;
+}
+
+.buttonCenter {
+  margin-top: 5%;
+  display: flex; 
+  justify-content: center !important;
+}
+
 @layer base {
   :where(:root),:root:has(input.theme-controller[value=light]:checked),[data-theme=light] {
     color-scheme: light;

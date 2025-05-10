@@ -1,40 +1,43 @@
 <%- include('partials/header') -%>
 
-<main class="container">
-  <div class="row justify-content-center">
-    <section class="col-6 mt-5">
-      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-      <div class="alert alert-danger"><%= el.msg %></div>
-      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
-      messages.info.forEach( el => { %>
-      <div class="alert alert-info"><%= el.msg %></div>
-      <% }) %> <% } %>
-      <form action="/login" method="POST">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
-          >
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            name="email"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="exampleInputPassword1"
-            name="password"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </section>
-  </div>
+<main class="">
+  <section class="">
+  <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+  <div class="alert alert-danger"><%= el.msg %></div>
+  <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+  messages.info.forEach( el => { %>
+  <div class="alert alert-info"><%= el.msg %></div>
+  <% }) %> <% } %>
+
+  <form action="/login" method="POST" class="loginForm">
+    <div class="">
+      <h2 class="text-center">E-mail Address:</h2>
+      <label for="exampleInputEmail1" class="form-label"></label>
+      <input
+        type="email"
+        class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="name@email.com"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        name="email"
+      />
+    </div>
+    <div class="">
+      <h2 class="text-center">Password:</h2>
+      <label for="exampleInputPassword1"></label>
+      <input
+        type="password"
+        class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="********"
+        id="exampleInputPassword1"
+        name="password"
+      />
+    </div>
+    <div class="buttonCenter">
+      <button type="submit" class="btn">Submit</button>
+    </div>
+  </form>
+</section>
 </main>
 
 <%- include('partials/footer') -%>

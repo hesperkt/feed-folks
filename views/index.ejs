@@ -1,11 +1,53 @@
 <%- include('partials/header') -%> 
 <!-- partials folder lets us use header and footer ejs so we don't have to re-type code -->
-<main class="container">
-    <div class="row justify-content-around mt-5">
-        <a href="/login" class="col-3 btn btn-primary"> Login</a>
-        <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
-    </div>
+<main class="">
+    <section>
+        <p>Welcome!! Paragraph about our mission.</p>
+    </section>
+    <section class="sign">
+        <p class="text-center">Login or Signup:</p>
+        <div class="signup">
+            <a href="/login" class="btn"><button class="fa fa-user" type="button"></button>Login</a>
+            <a href="/signup" class="btn"><span class="fa fa-user"></span>Signup</a>
+        </div>
+    </section>
 </main>
-    
 
+<section>
+<div class="questions">
+    <h3></h3>
+    <button class="accordion">Question 1</button>
+    <div class="panel">
+    </div>
+    <button class="accordion">Question 2</button>
+    <div class="panel">
+    </div>
+    <button class="accordion">Question 3</button>
+    <div class="panel form">
+        <form action="https://api.web3forms.com/submit" method="POST" >
+            <input type="hidden" name="apikey" value="d0f1e2b6-e403-428f-b63e-6cb54a32bf51">
+            <div>
+                <label for="name">Name: </label>
+                <input type="text" name="name" id="name" required/>
+            </div>
+            <div>
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" required/>
+            </div>
+            <div>
+                <label for="message">Message: </label>
+                <textarea name="message" id="message" rows="3"></textarea>
+            </div>
+            <div>
+                <button type="submit">Send message</button>
+            </div>
+        </form>
+    </div>
+</div>
+</section>
+
+<footer>
+</footer>
+    
+<script type="text/javascript" src="js/main.js"></script>
 <%- include('partials/footer') -%>
