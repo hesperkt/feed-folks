@@ -4,11 +4,12 @@ const upload = require("../middleware/multer")
 const podsController = require("../controllers/pods")
 const { ensureAuth, ensureGuest } = require("../middleware/auth")
 
-//Post Routes - simplified for now
-router.get("/:id", ensureAuth, podsController.getPod) //query parameter set to get value of post with specific ID
+router.get("/", podsController.getPod)
 
 router.post("/createPod", podsController.createPod)
 
 router.delete("/leavePod/:id", podsController.leavePod)
+
+router.delete("/deletePod/:id", ensureAuth, podsController.leavePod)
 
 module.exports = router

@@ -1,17 +1,18 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const passport = require("passport");
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
-const methodOverride = require("method-override");
-const flash = require("express-flash");
-const logger = require("morgan");
-const connectDB = require("./config/database");
+const express = require("express")
+const app = express()
+const mongoose = require("mongoose")
+const passport = require("passport")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")(session)
+const methodOverride = require("method-override")
+const flash = require("express-flash")
+const logger = require("morgan")
+const connectDB = require("./config/database")
 const mainRoutes = require("./routes/main")
 const postRoutes = require("./routes/posts")
 const commentRoutes = require("./routes/comment")
 const podRoutes = require("./routes/pod")
+const image = require('image-js')
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -56,8 +57,8 @@ app.use(passport.session());
 app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
-app.use("/", mainRoutes);
-app.use("/post", postRoutes); //every postRoutes has /post infront of the request
+app.use("/", mainRoutes)
+app.use("/post", postRoutes) //every postRoutes has /post infront of the request
 app.use("/comment", commentRoutes) //tells us which route to use for specific request -> refer to top with require
 app.use("/pod", podRoutes)
 

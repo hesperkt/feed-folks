@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary")
 const Post = require("../models/Post")
 const Comment = require("../models/Comment")
+const { Image } = require('image-js');
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -48,21 +49,19 @@ module.exports = {
       console.log(err)
     }
   },
-  //Created on 5/7/2025 with Blu & Layoyo <3
-  // createComment: async (req, res) => {
-  //   try {
-  //     await Comment.create({
-  //       text: req.body.comment,
-  //       likes: 0,
-  //       postedBy: req.user.id,
-  //       postID: req.params.id
-  //     });
-  //     console.log("Post has been added!");
-  //     res.redirect(`/post/${req.params.id}`);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
+  translatePost: async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id)
+      Image.load(post).then(function(post){
+        var grey = post.grey()
+        grey.save(post)
+      })
+      console.log("Post has been translated!")
+      res.redirect("/profile")
+    } catch (err) {
+      console.log(err)
+    }
+  },
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate( //find post with id from URL and update with additional like
@@ -92,3 +91,19 @@ module.exports = {
     }
   },
 };
+
+//Created on 5/7/2025 with Blu & Layoyo <3
+  // createComment: async (req, res) => {
+  //   try {
+  //     await Comment.create({
+  //       text: req.body.comment,
+  //       likes: 0,
+  //       postedBy: req.user.id,
+  //       postID: req.params.id
+  //     });
+  //     console.log("Post has been added!");
+  //     res.redirect(`/post/${req.params.id}`);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }

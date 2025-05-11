@@ -14,6 +14,8 @@
           <button class="btn btn-primary fa fa-heart" type="submit"></button>
         </form>
         <h3 class="col-3">Likes: <%= post.likes %></h3>
+
+
         <%if(post.user == user.id){ %>
         <form
           action="/post/deletePost/<%= post.id %>?_method=DELETE"
@@ -23,6 +25,8 @@
           <button class="btn btn-primary fa fa-trash" type="submit"></button>
         </form>
         <%}%>
+
+        <form action="/post/translatePost/<%= post.id %>" method="POST"><button class="btn trash" type="submit"> Translate </button></form> 
 
     <div class="mt-5">
       <p><%= post.caption %></p>
@@ -46,7 +50,7 @@
 
           <%if(post.user == user.id || comments[i].postedBy == user.id){ %> 
             <!-- person who made post == person logged in OR person who commented == person logged in -> you can delete the comment!!! yay ty Layoyo <3 -->
-           <form action="/comment/deleteComment/<%= comments[i].id %>?_method=PUT" method="POST"> <button class="btn btn-primary fa fa-trash" type="submit"> Delete</button></form> 
+           <form action="/comment/deleteComment/<%= comments[i].id %>?_method=PUT" method="POST"> <button class="btn trash" type="submit"> Delete</button></form> 
           <% } %>
           </li>
         <% } %>
