@@ -22,25 +22,15 @@ module.exports = {
     createPod: async (req, res) => {
       try {
         const result = await cloudinary.uploader.upload(req.file.path);
-  
         await Pod.create({
           podName: req.body.podName,
           image: result.secure_url,
           cloudinaryId: result.public_id,
-          description: req.body.description,
+          podDescription: req.body.podDescription,
           user: req.user.id,
-        });
+        })
         console.log("Pod has been created!")
-        res.render("pods.ejs", { pods: pods, user: req.user })
-      } catch (err) {
-        console.log(err)
-      }
-    },
-    leavePod: async (req, res) => {
-      try {
-        const pods = await Pod.find({ _id: req.params.id })
-        await Pod.remove({ _id: req.params.id });
-        res.render("pods.ejs", { pods: pods, user: req.user })
+        res.redirect("/pod")
       } catch (err) {
         console.log(err)
       }

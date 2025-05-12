@@ -12,16 +12,16 @@ const MessageSchema = new mongoose.Schema({
     createdAt: {
       type: Date,
       default: Date.now, 
+    },
+     podID: {
+       type: String,
+       required: true,  
     }
-    // ,podID: {
-    //   type: String,
-    //   // required: true,  
-    // }
-    // ,delete: {
-    //   type: Boolean,
-    //   required: true,
-    //   default: false,
-    // },
+    ,delete: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   });
   
   module.exports = mongoose.model("Message", MessageSchema);
