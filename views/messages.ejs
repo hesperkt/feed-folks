@@ -1,14 +1,15 @@
 <%- include('partials/header') -%>
-  <h2>Peas in Pods</h2>
   
-  <div id="chat">
-    <ul id="messages">
+  
+  <div id="chat" class="chat">
+    <h2 class="text-center">Peas in Pods</h2>
+    <ul class="messages" id="messages">
       <% for (let i = 0; i < messages.length; i++) { %> 
         <li> <%= messages[i].user.userName %> <%= messages[i].message %> </li>
       <%}%>
   
     </ul>
-    <form id="messageForm">
+    <form id="messageForm" class="buttonCenter messageForm">
       <input id="messageInput" autocomplete="off" />
       <button>Send</button>
     </form>
@@ -59,7 +60,7 @@
     });
   </script>
 
-<div class="">
+<div class="buttonCenter gap">
   <a class="btn" href="/profile">Return to Profile</a>
   <a class="btn" href="/feed">Return to Feed</a>
 </div>
