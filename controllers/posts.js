@@ -17,7 +17,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean()//Post is our modelschema; find all of our posts -> sort them by time created at by descending order -> pass it (array of posts) to ejs and keep their name as posts
-      res.render("feed.ejs", { posts: posts }) //talks to view folder with feed.ejs and sends the content back to the browswer
+      res.render("feed.ejs", { posts: posts }) //talks to view folder with feed.ejs and sends the content back to the browser
     } catch (err) {
       console.log(err)
     }

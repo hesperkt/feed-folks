@@ -62,7 +62,6 @@ app.use("/", mainRoutes)
 app.use("/post", postRoutes) //every postRoutes has /post infront of the request
 app.use("/comment", commentRoutes) //tells us which route to use for specific request -> refer to top with require
 
-
 const server = http.createServer(app);
 const io = socketIO(server);
 const Message = require('./models/Message');

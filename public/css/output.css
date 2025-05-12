@@ -37,7 +37,7 @@
   }
   h1 {
     font-size: 2rem;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
   }
   h4 {
     font-size: 1.5rem;
@@ -449,10 +449,29 @@ main section{
   margin: 1.5%;
 }
 
-/* img {
-  height: 25%;
-  width: 25%;
-} */
+.gap {
+  gap: 2%;
+}
+
+.split {
+  margin-top: 1%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.split section {
+  flex: 1;
+}
+
+.commentSheet {
+  margin: 2% 0;
+  width: 100%;
+  color: rgb(255 255 255);
+	border: 2px solid rgb(255 255 255);
+	background: rgb(98 141 86);
+	position: relative;
+	padding: 3%;
+  margin-bottom: 3%;
+}
 
 .basic {
   font-size: 1.5rem;
@@ -519,6 +538,17 @@ main section{
   margin-bottom: 3%;
 }
 
+.commentForm input {
+  width: 100%;
+  color: black;
+	border: 2px solid rgb(58 133 37);
+	background: rgb(255 255 255);
+	position: relative;
+	padding: 3%;
+  margin-bottom: 3%;
+}
+
+
 .submitPost {
   margin-top: 5%;
 }
@@ -564,10 +594,23 @@ li a:hover{
 
 .postMedia {
   border: 2px solid rgb(255 255 255);
-  margin: 2%;
-  height: 35%;
-  width: 35%;
+  margin: 2% auto;
+  height: 80%;
+  width: 90%;
 }
+
+.likeSection {
+  margin-top: 2%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#translatedParagraph p{
+  margin: 2%;
+  background: rgb(255 255 255);
+  color: black;
+}
+
 
 .divide {
   display: flex;

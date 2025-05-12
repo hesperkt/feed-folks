@@ -1,26 +1,29 @@
 // const cloudinary = require("../middleware/cloudinary")
 // const mongoose = require("mongoose")
 // const Pod = require("../models/Pod")
+// const Comment = require("../models/Comment")
 
 // module.exports = {
-//   getPod: async (req, res) => {
+//   getPods: async (req, res) => {
 //     try {
-//       const pods = await Pod.find()
+//       const pods = await Pod.find().sort({ createdAt: "desc" }).lean()
 //       res.render("pods.ejs") 
 //     } catch (err) {
 //       console.log(err)
 //     }
 //   },
-//   getpeasInPods: async (req, res) => {
+//   getPod: async (req, res) => {
 //     try {
-//       const pods = await Pod.find({ user: req.user.id })
-//       res.render("pods.ejs", { pods: pods, user: req.user })
+//       const pod = await Pod.findById(req.params.id) //go to Post and find post that meets query parameter (with specific ID; can change name of this item if POST routes is changed too) and send to ejs
+//       const messages = await Message.find({postID:req.params.id, delete:false})
+//       res.render("pods.ejs", { pod: pod, user: req.user, messages: messages })
 //     } catch (err) {
 //       console.log(err)
 //     }
 //   },
 //   createPod: async (req, res) => {
 //     try {
+//       const date = Date.now()
 //       const result = await cloudinary.uploader.upload(req.file.path);
 
 //       await Pod.create({
@@ -31,15 +34,6 @@
 //         user: req.user.id,
 //       });
 //       console.log("Pod has been created!")
-//       res.render("pods.ejs", { pods: pods, user: req.user })
-//     } catch (err) {
-//       console.log(err)
-//     }
-//   },
-//   leavePod: async (req, res) => {
-//     try {
-//       const pod = await Pod.find({ _id: req.params.id })
-//       await Pod.remove({ _id: req.params.id });
 //       res.render("pods.ejs", { pods: pods, user: req.user })
 //     } catch (err) {
 //       console.log(err)

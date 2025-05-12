@@ -1,12 +1,5 @@
 <%- include('partials/header') -%>
   <h2>Peas in Pods</h2>
-  <!-- <% for(var i=0; i<pods.length; i++) {%> 
-    <li class="col-6 justify-content-between mt-5">
-      <a href="/pod/<%= pods[i]._id%>">
-        <img class="img-fluid" src="<%= pods[i].image%>">
-      </a>
-    </li>
-  <% } %> -->
   
   <div id="chat">
     <ul id="messages">
@@ -15,17 +8,15 @@
       <%}%>
   
     </ul>
-    <form id="messageForm" action="/pod/createMessage/<%= pod.id %>"
-      method="POST"
-      class="col-3">
+    <form id="messageForm">
       <input id="messageInput" autocomplete="off" />
-      <button>Send Message</button>
+      <button>Send</button>
     </form>
   </div>
 
   <section class="submitPost basic">
     <h2>Create a Pod</h2>
-    <form action="/pod/createPod" enctype="multipart/form-data" method="POST">
+    <form action="/post/createPod" enctype="multipart/form-data" method="POST">
       <div class="">
           <label for="podName" class="form-label">Title:</label>
           <input type="text" class="formInput" id="title" name="podName">
@@ -44,7 +35,7 @@
     </form>
 </section>
 
-  <!-- <script src="/socket.io/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script>
     const socket = io();
 
@@ -66,7 +57,7 @@
         input.value = '';
       }
     });
-  </script> -->
+  </script>
 
 <div class="">
   <a class="btn" href="/profile">Return to Profile</a>

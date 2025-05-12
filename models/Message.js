@@ -13,11 +13,7 @@ const MessageSchema = new mongoose.Schema({
       type: Date,
       default: Date.now, 
     },
-     podID: {
-       type: String,
-       required: true,  
-    }
-    ,delete: {
+    delete: {
       type: Boolean,
       required: true,
       default: false,
