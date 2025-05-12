@@ -17,6 +17,10 @@ const PodSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  peasInThePod: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   leavePod: {
     type: Boolean,
     default: false,

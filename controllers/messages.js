@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary")
 const Message = require("../models/Message")
+const Pod = require("../models/Pod")
 
 module.exports = {
   getPods: async (req, res) => {
@@ -37,7 +38,7 @@ module.exports = {
     },
     leavePod: async (req, res) => {
       try {
-        const pod = await Pod.find({ _id: req.params.id })
+        const pods = await Pod.find({ _id: req.params.id })
         await Pod.remove({ _id: req.params.id });
         res.render("pods.ejs", { pods: pods, user: req.user })
       } catch (err) {
@@ -46,7 +47,7 @@ module.exports = {
     },
     deletePod: async (req, res) => {
       try {
-        let pod = await Pod.findById({ _id: req.params.id });
+        let pods = await Pod.findById({ _id: req.params.id });
         await mongoose.destroy(pod.cloudinaryId);
         await Pod.remove({ _id: req.params.id });
         console.log("Deleted Pod");

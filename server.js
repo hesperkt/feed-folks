@@ -11,7 +11,7 @@ const connectDB = require("./config/database")
 const mainRoutes = require("./routes/main")
 const postRoutes = require("./routes/posts")
 const commentRoutes = require("./routes/comment")
-const podRoutes = require("./routes/pod")
+const podRoutes = require("./routes/pods")
 const image = require('image-js')
 const http = require('http');
 const socketIO = require('socket.io');
@@ -62,7 +62,7 @@ app.use(flash());
 app.use("/", mainRoutes)
 app.use("/post", postRoutes) //every postRoutes has /post infront of the request
 app.use("/comment", commentRoutes) //tells us which route to use for specific request -> refer to top with require
-// app.use("/pod", mainRoutes)
+app.use("/pods", podRoutes)
 
 
 const server = http.createServer(app);
