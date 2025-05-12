@@ -548,6 +548,16 @@ main section{
   margin: 0 2%;
 }
 
+.messages li {
+  background: rgb(98 141 86);
+  color: rgb(255 255 255);
+}
+
+.messages li:nth-child(odd) {
+  background: rgb(255 255 255);
+  color: black;
+}
+
 .commentForm input {
   width: 100%;
   color: black;
@@ -622,10 +632,10 @@ li a:hover{
 }
 
 .chat {
-  margin: 0 5%;
+  margin: 0 10%;
   padding: 2% 5%;
-  background: rgb(255 255 255);
-  color: black;
+  background: black;
+  color: rgb(255 255 255);
 }
 
 .messages {
