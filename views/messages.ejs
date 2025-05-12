@@ -45,7 +45,7 @@
       const messages = document.getElementById('messages');
       const li = document.createElement('li');
       li.textContent = `${data.user.userName}: ${data.message}`;
-      messages.appendChild(li);
+      messages.appendChild(li.textContent);
     });
 
     // Handle form submission
