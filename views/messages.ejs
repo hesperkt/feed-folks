@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Real-Time Chat</title>
-</head>
-<body>
-  <h1>Real-Time Chat App</h1>
+<%- include('partials/header') -%>
+  <h2>Peas in Pods</h2>
   <div id="chat">
     <ul id="messages">
       <% for (let i = 0; i < messages.length; i++) { %> 
@@ -17,6 +12,27 @@
       <button>Send</button>
     </form>
   </div>
+
+  <section class="submitPost basic">
+    <h2>Create a Pod</h2>
+    <form action="/post/createPod" enctype="multipart/form-data" method="POST">
+      <div class="">
+          <label for="title" class="form-label">Title:</label>
+          <input type="text" class="formInput" id="title" name="title">
+      </div>
+      <div class="">
+        <label for="caption" class="form-label">Description:</label>
+        <textarea class="form-control" id="caption" name="caption"></textarea>
+      </div>
+      <div class="">
+        <label for="imgUpload" class="form-label">Media:</label>
+        <input type="file" class="formInput" id="imageUpload" name="file">
+      </div>
+      <div class="buttonCenter">
+      <button type="submit" class="btn" value="Upload">Submit</button>
+      </div>
+    </form>
+</section>
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
@@ -41,5 +57,10 @@
       }
     });
   </script>
-</body>
-</html>
+
+<div class="">
+  <a class="btn" href="/profile">Return to Profile</a>
+  <a class="btn" href="/feed">Return to Feed</a>
+</div>
+
+<%- include('partials/footer') -%>

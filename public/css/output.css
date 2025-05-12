@@ -457,7 +457,7 @@ main section{
 .basic {
   font-size: 1.5rem;
   padding: 2%;
-  margin: 2%;
+  margin: 4%;
   background:rgb(98 141 86);
   color:  rgb(255 255 255);
 }
@@ -579,7 +579,7 @@ li a:hover{
 }
 
 .buttonCenter {
-  margin-top: 5%;
+  margin-top: 3%;
   display: flex; 
   justify-content: center !important;
 }

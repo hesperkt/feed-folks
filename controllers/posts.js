@@ -35,7 +35,7 @@ module.exports = {
     try {
       const date = Date.now()
       Image.load(req.file.path).then(function(image){
-        return image.grey()
+        return image.colorDepth(16).grey()
       }).then (grey => {
         console.log(`I'm grey now aHHHHHH!!!`)
         grey.save(`public/imgs/${date}.png`)

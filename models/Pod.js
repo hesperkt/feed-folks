@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PodSchema = new mongoose.Schema({
-  title: {
+  podName: {
     type: String,
     required: true,
   },

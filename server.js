@@ -16,7 +16,6 @@ const image = require('image-js')
 const http = require('http');
 const socketIO = require('socket.io');
 
-
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
@@ -68,8 +67,6 @@ app.use("/comment", commentRoutes) //tells us which route to use for specific re
 
 const server = http.createServer(app);
 const io = socketIO(server);
-
-
 const Message = require('./models/Message');
 
 io.on('connection', (socket) => {
@@ -100,13 +97,3 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT, () => {
   console.log(`Server is running at ${process.env.PORT}, you better catch it!`);
 });
-
-
-
-// (err) => {
-//   if (err) {
-//     console.error('Error saving message to database:', err);
-//   } else {
-//     console.log('Message saved to the database');
-//   }
-// }
