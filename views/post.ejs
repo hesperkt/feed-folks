@@ -4,14 +4,14 @@
     <div class="col-6">
       <h2><%= post.title %></h2>
       <!-- <%= JSON.stringify(post._id) %>  used to test why post.id rather than post._id works -->
-      <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row justify-content-between">
+      <img class="postMedia" src="<%= post.image%>" />
+      <div class="">
         <form
-          class="col-1"
+          class=""
           action="/post/likePost/<%= post.id %>?_method=PUT" 
           method="POST" 
         >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          <button class="btn" type="submit">Like</button>
         </form>
         <h3 class="col-3">Likes: <%= post.likes %></h3>
 
@@ -22,11 +22,15 @@
           method="POST"
           class="col-3"
         >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+          <button class="btn" type="submit">Delete</button>
         </form>
         <%}%>
 
-        <form action="/post/translatePost/<%= post.id %>" method="POST"><button class="btn trash" type="submit"> Translate </button></form> 
+        <form id="translationForm" action="/post/translatePost/<%= post.id %>" method="POST"><button class="btn " type="submit"> Translate </button></form>
+
+        <div id="translatedParagraph">
+          <p></p>
+        </div>
 
     <div class="mt-5">
       <p><%= post.caption %></p>
@@ -64,5 +68,19 @@
     </div>
   </div>
 </div>
-
+ <script>
+  const translationForm = document.querySelector("#translationForm")
+  translationForm.addEventListener('submit', (event) => {
+    event.preventDefault() //makes sure event doesn't perform POST request bc we're going to do that ourselves!!!
+    fetch("/post/translatePost/<%= post.id %>")
+      .then(res => res.json())
+      .then(data => {
+          console.log(data)
+          document.querySelector("#translatedParagraph p").innerText = data.translated
+      })
+    .catch(err => {
+        console.log(`error ${err}`)
+    })
+  })
+</script> 
 <%- include('partials/footer') -%>

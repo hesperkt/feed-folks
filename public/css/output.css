@@ -385,6 +385,12 @@
 .questions {
   margin: 0 15%;
 }
+
+.questions h3 {
+  margin: 2%;
+  font-size: 1.5rem;
+  text-align: center;
+}
 .accordion {
   background:rgb(98 141 86);
   color: rgb(244 240 234);
@@ -414,6 +420,12 @@
 .active:after {
   content: "★";
   color: rgb(244 240 234);
+}
+
+.about h2 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 2%;
 }
 
 .navigationBar {
@@ -548,6 +560,13 @@ li a:hover{
 .profilePosts img {
   height: 45%;
   width: 45%;
+}
+
+.postMedia {
+  border: 2px solid rgb(255 255 255);
+  margin: 2%;
+  height: 35%;
+  width: 35%;
 }
 
 .divide {

@@ -13,6 +13,9 @@ const postRoutes = require("./routes/posts")
 const commentRoutes = require("./routes/comment")
 const podRoutes = require("./routes/pod")
 const image = require('image-js')
+const http = require('http');
+const socketIO = require('socket.io');
+
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -20,7 +23,7 @@ require("dotenv").config({ path: "./config/.env" });
 // Passport config
 require("./config/passport")(passport);
 
-//Connect To Database
+//Connect To Database from config/database.js
 connectDB();
 
 //Using EJS for views
@@ -60,9 +63,50 @@ app.use(flash());
 app.use("/", mainRoutes)
 app.use("/post", postRoutes) //every postRoutes has /post infront of the request
 app.use("/comment", commentRoutes) //tells us which route to use for specific request -> refer to top with require
-app.use("/pod", podRoutes)
+// app.use("/pod", mainRoutes)
+
+
+const server = http.createServer(app);
+const io = socketIO(server);
+
+
+const Message = require('./models/Message');
+
+io.on('connection', (socket) => {
+  console.log('User connected:', socket.id);
+
+  // Listen for incoming chat messages
+  socket.on('chat message', async (data) => {
+    console.log('Received message:', data);
+
+    // Save the message to MongoDB
+    const createMessage = new Message({ user: data.user, message: data.message });
+    await createMessage.save()
+    .then(async (message) => {
+      // Broadcast the message to all connected clients\
+      const newMessage = await Message.findById(message.id).populate("user")
+      data.user = newMessage.user // grabbing the full user object and connecting them
+      io.emit('chat message', data);
+    })
+  });
+
+  // Listen for user disconnection
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+});
 
 //Server Running
-app.listen(process.env.PORT, () => {
+server.listen(process.env.PORT, () => {
   console.log(`Server is running at ${process.env.PORT}, you better catch it!`);
 });
+
+
+
+// (err) => {
+//   if (err) {
+//     console.error('Error saving message to database:', err);
+//   } else {
+//     console.log('Message saved to the database');
+//   }
+// }

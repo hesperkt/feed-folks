@@ -29,6 +29,14 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: Date.now, //date with current time
   },
+  greyImage: {
+    type: String,
+    require: true,
+  },
+  greyImageID: {
+    type: String,
+    require: true,
+  }
 });
 
 module.exports = mongoose.model("Post", PostSchema);

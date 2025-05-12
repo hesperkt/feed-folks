@@ -1,8 +1,10 @@
 <%- include('partials/header') -%> 
 <!-- partials folder lets us use header and footer ejs so we don't have to re-type code -->
-<main class="">
-    <section>
-        <p>Welcome!! Paragraph about our mission.</p>
+<main>
+    <section class="about">
+        <h2>About Us</h2>
+        <p style="text-indent:10%";>Welcome to Feed Folks! We're a community-centered food equity hub for folks to connect with one another, disseminate resources with ways to access free/affordable produce/meals, and translate materials to ensure events are equitable.
+        </p>
     </section>
     <section class="sign">
         <p class="text-center">Login or Signup:</p>
@@ -15,33 +17,18 @@
 
 <section>
 <div class="questions">
-    <h3></h3>
-    <button class="accordion">Question 1</button>
+    <h3>Questions to Navigate</h3>
+    <button class="accordion">Where do I begin with finding resources?</button>
+    <div class="panel">
+
+        
+    </div>
+    <button class="accordion">How can I get connected with other people?</button>
     <div class="panel">
     </div>
-    <button class="accordion">Question 2</button>
+    <button class="accordion">Why not use other platforms?</button>
     <div class="panel">
-    </div>
-    <button class="accordion">Question 3</button>
-    <div class="panel form">
-        <form action="https://api.web3forms.com/submit" method="POST" >
-            <input type="hidden" name="apikey" value="d0f1e2b6-e403-428f-b63e-6cb54a32bf51">
-            <div>
-                <label for="name">Name: </label>
-                <input type="text" name="name" id="name" required/>
-            </div>
-            <div>
-                <label for="email">Email: </label>
-                <input type="email" name="email" id="email" required/>
-            </div>
-            <div>
-                <label for="message">Message: </label>
-                <textarea name="message" id="message" rows="3"></textarea>
-            </div>
-            <div>
-                <button type="submit">Send message</button>
-            </div>
-        </form>
+        While various social media platforms exist, not every organization or resource is posted in every forum and people of different identities may not participate in the same spaces. Older folks, non-English speakers, and more hold marginalized identities that may lead to contrasting engagement on various platforms.
     </div>
 </div>
 </section>

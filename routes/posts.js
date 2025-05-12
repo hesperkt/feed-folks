@@ -12,6 +12,8 @@ router.get("/:id", ensureAuth, postsController.getPost) //query parameter set to
 
 router.post("/createPost", upload.single("file"), postsController.createPost)
 
+router.get("/translatePost/:id", postsController.translatePost)
+
 router.put("/likePost/:id", postsController.likePost)
 
 router.delete("/deletePost/:id", postsController.deletePost)

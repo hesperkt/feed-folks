@@ -1,7 +1,9 @@
 const cloudinary = require("../middleware/cloudinary")
 const Post = require("../models/Post")
 const Comment = require("../models/Comment")
-const { Image } = require('image-js');
+const { Image } = require('image-js')
+const Tesseract = require('tesseract.js')
+const fs = require('fs')
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -24,7 +26,6 @@ module.exports = {
     try {
       const post = await Post.findById(req.params.id) //go to Post and find post that meets query parameter (with specific ID; can change name of this item if POST routes is changed too) and send to ejs; is findByID a global method or did we create it?
       const comments = await Comment.find({postID:req.params.id, delete:false})
-      console.log(post, comments)
       res.render("post.ejs", { post: post, user: req.user, comments: comments }) //lets us see post; user: req.user -> logged in user
     } catch (err) {
       console.log(err)
@@ -32,8 +33,18 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
-      // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      const date = Date.now()
+      Image.load(req.file.path).then(function(image){
+        return image.grey()
+      }).then (grey => {
+        console.log(`I'm grey now aHHHHHH!!!`)
+        grey.save(`public/imgs/${date}.png`)
+      })
+
+      const result = await cloudinary.uploader.upload(req.file.path)
+      const greyImage = await cloudinary.uploader.upload(`public/imgs/${date}.png`)
+
+      fs.unlink(`public/imgs/${date}.png`, err => console.log("I've been deleted from your files!!!"))
 
       await Post.create({
         title: req.body.title,
@@ -42,7 +53,9 @@ module.exports = {
         caption: req.body.caption,
         likes: 0,
         user: req.user.id,
-      });
+        greyImage: greyImage.secure_url,
+        greyImageId: greyImage.public_id
+      })
       console.log("Post has been added!")
       res.redirect("/profile")
     } catch (err) {
@@ -52,12 +65,31 @@ module.exports = {
   translatePost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id)
-      Image.load(post).then(function(post){
-        var grey = post.grey()
-        grey.save(post)
-      })
-      console.log("Post has been translated!")
-      res.redirect("/profile")
+      // let body 
+      await Tesseract.recognize(
+          post.greyImage,
+          'eng', // Language of the text in the image
+           { logger: m => console.log(m) } 
+          ).then(({ data: { text } }) => {
+          console.log(text);
+          res.json({translated: text})
+          }).catch(error => {
+          console.error("Error during OCR:", error);
+          })
+          
+          
+          // const response = await fetch("https://libretranslate.com/translate", {
+          //   method: "POST",
+          //   body: JSON.stringify({
+          //     q: body,
+          //     source: "en",
+          //     target: "es",
+          //   }),
+          //   headers: { "Content-Type": "application/json" },
+          // })
+          // let data = await response.json()
+          // console.log(data)
+          // res.json({translated: data.translatedText})
     } catch (err) {
       console.log(err)
     }
