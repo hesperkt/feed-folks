@@ -37,14 +37,14 @@ module.exports = {
       Image.load(req.file.path).then(function(image){
         return image.colorDepth(16).grey()
       }).then (grey => {
-        console.log(`I'm grey now aHHHHHH!!!`)
+        console.log(`I'm grey now!`)
         grey.save(`public/imgs/${date}.png`)
       })
 
       const result = await cloudinary.uploader.upload(req.file.path)
       const greyImage = await cloudinary.uploader.upload(`public/imgs/${date}.png`)
 
-      fs.unlink(`public/imgs/${date}.png`, err => console.log("I've been deleted from your files!!!"))
+      fs.unlink(`public/imgs/${date}.png`, err => console.log("I've been deleted from your files!"))
 
       await Post.create({
         title: req.body.title,
@@ -65,6 +65,8 @@ module.exports = {
   translatePost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id)
+      const fetch = require("node-fetch");
+      const url = require("url");
       // let body 
       await Tesseract.recognize(
           post.greyImage,
@@ -76,23 +78,30 @@ module.exports = {
           }).catch(error => {
           console.error("Error during OCR:", error);
           })
-          
-          // const response = await fetch("https://libretranslate.com/translate", {
-          //   method: "POST",
-          //   body: JSON.stringify({
-          //     q: body,
-          //     source: "en",
-          //     target: "es",
-          //   }),
-          //   headers: { "Content-Type": "application/json" },
-          // })
-          // let data = await response.json()
-          // console.log(data)
-          // res.json({translated: data.translatedText})
-    } catch (err) {
-      console.log(err)
-    }
-  },
+          const params = new url.URLSearchParams();
+          params.append("to", "es");
+          params.append("from", "en");
+          params.append({translated});
+
+          const options = {
+            method: "POST",
+            headers: {
+              "content-type": "application/x-www-form-urlencoded",
+              "x-rapidapi-host": "lecto-translation.p.rapidapi.com",
+              "x-rapidapi-key": process.env.RAPIDAPI_API_KEY,
+            },
+            body: params,
+          };
+          fetch("https://lecto-translation.p.rapidapi.com/v1/translate/text", options)
+            .then((response) => response.json())
+            .then((json) => console.log(JSON.stringify(json)))
+            .catch(function (error) {
+              console.error(error);
+            });
+              } catch (err) {
+                console.log(err)
+              }
+            },
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate( //find post with id from URL and update with additional like
