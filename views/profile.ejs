@@ -89,9 +89,10 @@
   </section>
 </section>
 
-<section class="half">
-  <section class="profilePosts">
-    <ul class="">
+<div class="half">
+  <div class="profilePosts">
+    <h2 class="section-heading text-uppercase text-center mt-5">Posts</h2>
+    <ul class="postsProfile">
     <% for(var i=0; i<posts.length; i++) {%>
       <li class="col-6 justify-content-between mt-5">
         <a href="/post/<%= posts[i]._id%>">
@@ -103,7 +104,7 @@
     <div class="buttonCenter">
       <a class="btn" href="/feed">Return to Harvest</a>
     </div>  
-  </section> 
-</section> 
+  </div> 
+</div> 
 </section>
 <%- include('partials/footer') -%>

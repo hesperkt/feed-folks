@@ -482,8 +482,12 @@ main section{
   font-size: 1.5rem;
   padding: 2%;
   margin: 4%;
-  background:rgb(98 141 86);
+  background:#85b961;
   color:  rgb(255 255 255);
+}
+
+.basic .btn {
+  background: #628d56;
 }
 
 .userInfo {
@@ -494,6 +498,11 @@ main section{
   border: 2px solid rgb(255 255 255);
   margin: 2%;
   height: 100%;
+}
+
+.postsProfile {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .feedPosts {
@@ -638,8 +647,10 @@ li a:hover{
 
 #translatedParagraph p{
   margin: 2%;
+  text-align: center;
   background: rgb(255 255 255);
   color: black;
+  font-size: 2rem;
 }
 
 .chat {
