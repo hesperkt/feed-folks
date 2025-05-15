@@ -4,6 +4,8 @@ const Comment = require("../models/Comment")
 const { Image } = require('image-js')
 const Tesseract = require('tesseract.js')
 const fs = require('fs')
+const fetch = require("node-fetch");
+const url = require("url");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -65,43 +67,46 @@ module.exports = {
   translatePost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id)
-      const fetch = require("node-fetch");
-      const url = require("url");
-      // let body 
+      let body 
       await Tesseract.recognize(
           post.greyImage,
           'eng', // Language of the text in the image
            { logger: m => console.log(m) } 
           ).then(({ data: { text } }) => {
           console.log(text);
-          res.json({translated: text})
-          }).catch(error => {
-          console.error("Error during OCR:", error);
-          })
+          body = text
+
           const params = new url.URLSearchParams();
           params.append("to", "es");
           params.append("from", "en");
-          params.append({translated});
+          params.append("texts", body);
 
           const options = {
             method: "POST",
             headers: {
-              "content-type": "application/x-www-form-urlencoded",
-              "x-rapidapi-host": "lecto-translation.p.rapidapi.com",
-              "x-rapidapi-key": process.env.RAPIDAPI_API_KEY,
+              "Content-Type": "application/json",
+              //  "x-rapidapi-host": "lecto-translation.p.rapidapi.com",
+              "X-API-Key": process.env.RAPIDAPI_API_KEY,
+              "Accept": "application/json"
             },
-            body: params,
+            body: JSON.stringify({"texts":[body],"to":["es"],"from":"en"}),
           };
-          fetch("https://lecto-translation.p.rapidapi.com/v1/translate/text", options)
+          fetch("https://api.lecto.ai/v1/translate/text", options)
             .then((response) => response.json())
-            .then((json) => console.log(JSON.stringify(json)))
+            .then((json) => {
+              console.log(JSON.stringify(json))
+              res.json({translated : json.translations[0].translated[0]})
+            })
             .catch(function (error) {
               console.error(error);
             });
-              } catch (err) {
-                console.log(err)
-              }
-            },
+      }).catch(error => {
+      console.error("Error during OCR:", error);
+      })     
+    } catch (err) {
+      console.log(err)
+    }
+  },
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate( //find post with id from URL and update with additional like

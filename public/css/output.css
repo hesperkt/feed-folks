@@ -93,14 +93,14 @@
   ol, ul, menu {
     list-style: none;
   }
-  img, svg, video, canvas, audio, iframe, embed, object {
+  /* img, svg, video, canvas, audio, iframe, embed, object {
     display: block;
     /* vertical-align: middle; */
-  }
-  img, video {
+  } */
+  /* img, video {
     max-width: 100%;
     height: auto;
-  }
+  } */
   button, input, select, optgroup, textarea, ::file-selector-button {
     font: inherit;
     font-feature-settings: inherit;
@@ -162,7 +162,7 @@
   [hidden]:where(:not([hidden="until-found"])) {
     display: none !important;
   }
-}
+
 @layer utilities {
   .btn {
     :where(&) {
@@ -287,7 +287,7 @@
       isolation: isolate;
     }
   }
-  .container {
+  /* .container {
     width: 100%;
     @media (width >= 40rem) {
       max-width: 40rem;
@@ -304,7 +304,7 @@
     @media (width >= 96rem) {
       max-width: 96rem;
     }
-  }
+  } */
   .alert {
     display: grid;
     align-items: center;
@@ -433,7 +433,7 @@ h2 {
   margin: 2%;
 }
 
-.navigationBar {
+/* .navigationBar {
   display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -441,9 +441,9 @@ h2 {
   margin-bottom: 2%;
 	height: 75px;
 	background: rgb(98 141 86);
-}
+} */
 
-main {
+/* main {
   display: flex;
   flex-wrap: wrap;
 	justify-content: center;
@@ -452,7 +452,7 @@ main {
 main section{
   width: 455px;
   margin: 1.5%;
-}
+} */
 
 .gap {
   gap: 2%;
@@ -493,6 +493,7 @@ main section{
 .profilePosts li img {
   border: 2px solid rgb(255 255 255);
   margin: 2%;
+  height: 100%;
 }
 
 .feedPosts {
@@ -591,6 +592,8 @@ main section{
   border: 2px solid rgb(255 255 255);
   width: 100%;
   margin-bottom: 3%;
+  color: black;
+  background: white;
 }
 
 .alert {
@@ -616,8 +619,8 @@ li a:hover{
 }
 
 .profilePosts img {
-  height: 45%;
-  width: 45%;
+  height: 50%;
+  width: 100%;
 }
 
 .postMedia {

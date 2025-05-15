@@ -73,8 +73,8 @@
   --bs-border-radius-xl: 1rem;
   --bs-border-radius-2xl: 2rem;
   --bs-border-radius-pill: 50rem;
-  --bs-link-color: #ffc800;
-  --bs-link-hover-color: #cca000;
+  --bs-link-color: #44623c;
+  --bs-link-hover-color: #44623c;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff4cc;
 }
@@ -10878,7 +10878,7 @@ p {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  background-color: #44623c;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -10903,9 +10903,10 @@ p {
   font-size: 0.95rem;
   color: #fff;
   letter-spacing: 0.0625em;
+  background: #44623c;
 }
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #ffc800;
+  color: #fff;
 }
 
 @media (min-width: 992px) {
@@ -10928,7 +10929,7 @@ p {
   #mainNav.navbar-shrink {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: #212529;
+    background-color: #44623c;
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
