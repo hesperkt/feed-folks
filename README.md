@@ -1,7 +1,7 @@
 # Feed Folks
 Feed Folks is a community-centered food equity hub for folks to connect with one another, disseminate resources for ways to access free/affordable produce/meals, and translate media to ensure events are equitable.
 
-**Link to project:** https://feed-folks.onrender.comhttps://hesperkt.github.io/buckle-bunnies-fund/
+**Link to project:** https://feed-folks.onrender.com
 
 <img width="1280" alt="feedFolks" src="https://github.com/user-attachments/assets/3b451dde-fea7-4f29-8329-f5e17321124f" />
 
