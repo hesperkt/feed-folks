@@ -69,7 +69,7 @@
  <script>
   const translationForm = document.querySelector("#translationForm")
   translationForm.addEventListener('submit', (event) => {
-    event.preventDefault() //makes sure event doesn't perform POST request bc we're going to do that ourselves!!!
+    event.preventDefault() 
     fetch("/post/translatePost/<%= post.id %>")
       .then(res => res.json())
       .then(data => {
